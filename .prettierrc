@@ -2,7 +2,7 @@
   "trailingComma": "none",
   "tabWidth": 2,
   "useTabs": true,
-  "semi": false,
+  "semi": true,
   "singleQuote": true,
   "jsxSingleQuote": true,
   "arrowParens": "avoid",
@@ -12,7 +12,8 @@
     "^@/utilities/(.*)$",
     "^@/components/(.*)$",
     "^@/assets/(.*)$",
-    "^@/assets/(.*)$"
+    "^@/providers/(.*)$",
+    "^@/types/(.*)$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,

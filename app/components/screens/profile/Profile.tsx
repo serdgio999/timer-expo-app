@@ -1,12 +1,17 @@
 import { FC } from 'react';
-import { Text, View } from 'react-native';
 
-const Settings: FC = () => {
-  return(
-    <View>
-      <Text>Settings</Text>
-    </View>
-  )
-}
+import Layout from '@/components/ui/layout/Layout';
+import { useAuth } from '@/hooks/useAuth';
+import Button from '@/components/ui/common/Button';
 
-export default Settings;
+const Profile: FC = () => {
+	const { setUser } = useAuth();
+
+	return (
+		<Layout title='Profile'>
+			<Button onPress={() => setUser(null)}>Logout</Button>
+		</Layout>
+	);
+};
+
+export default Profile;
