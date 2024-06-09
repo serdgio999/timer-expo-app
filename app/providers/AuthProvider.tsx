@@ -1,4 +1,12 @@
-import { createContext, Dispatch, FC, PropsWithChildren, SetStateAction, useEffect, useState } from 'react';
+import {
+	createContext,
+	Dispatch,
+	FC,
+	PropsWithChildren,
+	SetStateAction,
+	useEffect,
+	useState
+} from 'react';
 import * as Splash from 'expo-splash-screen';
 
 import type { IUser } from '@/types/user.interface';
@@ -6,8 +14,8 @@ import type { IUser } from '@/types/user.interface';
 export type User = IUser | null;
 
 interface IAuthContext {
-  user: User;
-  setUser: Dispatch<SetStateAction<User>>;
+	user: User;
+	setUser: Dispatch<SetStateAction<User>>;
 }
 
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -15,31 +23,30 @@ export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 let ignore = Splash.preventAutoHideAsync();
 
 const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
-  const [user, setUser] = useState<User>(null);
+	const [user, setUser] = useState<User>({} as User);
 
-  useEffect(() => {
-    let isMounted = false;
+	useEffect(() => {
+		let isMounted = false;
 
-    const getUserFromStorage = async () => {
-      if (isMounted) {
+		const getUserFromStorage = async () => {
+			if (isMounted) {
+			}
 
-      }
+			await Splash.hideAsync();
+		};
 
-      await Splash.hideAsync();
-    }
+		let ignore = getUserFromStorage();
 
-    let ignore = getUserFromStorage();
+		return () => {
+			isMounted = false;
+		};
+	}, []);
 
-    return () => {
-      isMounted = false;
-    }
-  }, []);
-
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  )
+	return (
+		<AuthContext.Provider value={{ user, setUser }}>
+			{children}
+		</AuthContext.Provider>
+	);
 };
 
 export default AuthProvider;
