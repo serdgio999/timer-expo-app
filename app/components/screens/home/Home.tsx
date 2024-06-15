@@ -1,8 +1,7 @@
 import { FC } from 'react';
-import { Text, View } from 'react-native';
 
 import Layout from '@/components/ui/layout/Layout';
-import Timer from './timer/Timer';
+import Timer from './Timer';
 
 const Home: FC = () => {
 	return (
