@@ -22,7 +22,7 @@ export interface ITimerState {
   options: ITimerOptions;
 }
 
-export interface IPlayerControllers {
+export interface ITimerControllers {
   play: () => void;
   pause: () => void;
   toggle: () => void;
